@@ -54,4 +54,63 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     revealEls.forEach((el) => el.classList.add('visible'));
   }
+
+  /* ---- animated counters (data-count targets) ---- */
+  const counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && counters.length) {
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const decimals = el.dataset.count.includes('.') ? 1 : 0;
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = target * eased;
+          el.textContent = (decimals ? val.toFixed(1) : Math.round(val)) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        countObs.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => countObs.observe(el));
+  } else {
+    counters.forEach((el) => { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+  }
+
+  /* ---- progress bars (why-section) ---- */
+  const bars = document.querySelectorAll('.progress-track');
+  if ('IntersectionObserver' in window && bars.length) {
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('filled');
+          barObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach((el) => barObs.observe(el));
+  } else {
+    bars.forEach((el) => el.classList.add('filled'));
+  }
+
+  /* ---- hero visual subtle parallax on pointer move (desktop) ---- */
+  const heroVisual = document.querySelector('.hero-v2-visual');
+  if (heroVisual && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const frame = heroVisual.querySelector('.hero-v2-frame img');
+    heroVisual.addEventListener('mousemove', (e) => {
+      const r = heroVisual.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      if (frame) frame.style.transform = `scale(1.08) translate(${px * -14}px, ${py * -14}px)`;
+    });
+    heroVisual.addEventListener('mouseleave', () => {
+      if (frame) frame.style.transform = '';
+    });
+  }
 });
