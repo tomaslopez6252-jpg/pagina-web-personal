@@ -99,25 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     bars.forEach((el) => el.classList.add('filled'));
   }
 
-  /* ---- theme toggle widget (day/night, persisted) ---- */
-  const themeInput = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('flow-theme');
-  if (savedTheme === 'night') {
-    document.documentElement.setAttribute('data-theme', 'night');
-    if (themeInput) themeInput.checked = true;
-  }
-  if (themeInput) {
-    themeInput.addEventListener('change', () => {
-      const next = themeInput.checked ? 'night' : 'day';
-      if (next === 'night') {
-        document.documentElement.setAttribute('data-theme', 'night');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-      localStorage.setItem('flow-theme', next);
-    });
-  }
-
   /* ---- hero visual subtle parallax on pointer move (desktop) ---- */
   const heroVisual = document.querySelector('.hero-v2-visual');
   if (heroVisual && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
