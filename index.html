@@ -10,6 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
 </head>
 <body>
 
@@ -57,7 +60,11 @@
   </div>
 
   <div class="hero-v2-visual">
-    <div class="hero-v2-frame"><img src="https://picsum.photos/seed/flow-hero-main/900/1100" alt="Equipo de Agencia Flow trabajando en una campaña"></div>
+    <span class="hero-v2-corner-ast" aria-hidden="true">✳</span>
+    <div class="hero-v2-frame" id="heroCanvasWrap">
+      <canvas id="heroCanvas"></canvas>
+      <span class="hero-v2-frame-tag">RENDER 3D — EN VIVO</span>
+    </div>
     <div class="hero-v2-badge"><span>✦</span>Empezá tu proyecto</div>
     <div class="hero-v2-pill">
       <div class="hero-v2-pill-icon"></div>
@@ -69,9 +76,75 @@
   </div>
 </section>
 
+<script type="module" src="assets/hero-computer.js"></script>
+
 <div class="marquee-wrap"><div class="marquee-inner">
-  <span class="marquee-item">Marketing Digital</span><span class="marquee-item">Gestión de Redes</span><span class="marquee-item">Diseño Gráfico</span><span class="marquee-item">Estrategia de Marca</span><span class="marquee-item">Contenido Creativo</span><span class="marquee-item">Tráfico Pago</span>
-  <span class="marquee-item">Marketing Digital</span><span class="marquee-item">Gestión de Redes</span><span class="marquee-item">Diseño Gráfico</span><span class="marquee-item">Estrategia de Marca</span><span class="marquee-item">Contenido Creativo</span><span class="marquee-item">Tráfico Pago</span>
+  <span class="marquee-item">Marketing Digital</span><span class="marquee-item">Gestión de Redes</span><span class="marquee-item">Diseño Gráfico</span><span class="marquee-item">Diseño 3D</span><span class="marquee-item">Estrategia de Marca</span><span class="marquee-item">Contenido Creativo</span><span class="marquee-item">Tráfico Pago</span>
+  <span class="marquee-item">Marketing Digital</span><span class="marquee-item">Gestión de Redes</span><span class="marquee-item">Diseño Gráfico</span><span class="marquee-item">Diseño 3D</span><span class="marquee-item">Estrategia de Marca</span><span class="marquee-item">Contenido Creativo</span><span class="marquee-item">Tráfico Pago</span>
+</div></div>
+
+<section class="feature-block reveal">
+  <span class="feature-block-eyebrow"><span class="feature-block-dot"></span>Nuevo en Flow</span>
+  <div class="feature-block-row">
+    <span class="feature-ast" aria-hidden="true">✳</span>
+    <h2 class="feature-block-title">DISEÑO<br><span class="hl-orange">3D</span><span class="hl-lime">.</span></h2>
+    <p class="feature-block-desc">Sumamos render y diseño tridimensional a la propuesta: piezas, packaging y stands que se ven reales antes de producirse. La misma pieza, girada desde todos los ángulos.</p>
+  </div>
+</section>
+
+<div class="stat-dash reveal">
+  <div class="stat-dash-line"></div>
+  <div class="stat-dash-item">
+    <div class="stat-dash-label">Marcas activas</div>
+    <div class="stat-dash-num"><span data-count="40" data-suffix="+">0</span></div>
+  </div>
+  <div class="stat-dash-center">⌁</div>
+  <div class="stat-dash-item align-right">
+    <div class="stat-dash-label">Proyectos entregados</div>
+    <div class="stat-dash-num"><span data-count="120" data-suffix="+">0</span></div>
+  </div>
+</div>
+
+<section class="why-section">
+  <div class="why-grid">
+    <div class="why-visual reveal">
+      <img src="https://picsum.photos/seed/flow-why/700/900" alt="Equipo de Agencia Flow en una sesión de estrategia">
+      <div class="why-visual-tag">+10 años de experiencia combinada</div>
+      <span class="why-visual-ast" aria-hidden="true">✳</span>
+    </div>
+    <div class="why-copy reveal">
+      <span class="section-eyebrow">Por qué Flow</span>
+      <h2 class="section-title">Estrategia primero, piezas después</h2>
+      <p class="section-note" style="margin-top:16px;">No vendemos posteos sueltos. Cada pieza responde a un objetivo medible y a un calendario que vos aprobás antes de que salga a producción.</p>
+      <div class="why-list">
+        <div>
+          <div class="why-item-head"><span class="why-item-label">Estrategia basada en datos</span><span class="why-item-pct">92%</span></div>
+          <div class="progress-track" style="--pct:92%"><div class="progress-fill"></div></div>
+        </div>
+        <div>
+          <div class="why-item-head"><span class="why-item-label">Identidad visual consistente</span><span class="why-item-pct">96%</span></div>
+          <div class="progress-track" style="--pct:96%"><div class="progress-fill"></div></div>
+        </div>
+        <div>
+          <div class="why-item-head"><span class="why-item-label">Comunicación clara y a tiempo</span><span class="why-item-pct">100%</span></div>
+          <div class="progress-track" style="--pct:100%"><div class="progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="icon-strip">
+        <div class="icon-chip"><span class="icon-chip-dot">M</span><span class="icon-chip-label">Meta Ads</span></div>
+        <div class="icon-chip"><span class="icon-chip-dot">G</span><span class="icon-chip-label">Google Ads</span></div>
+        <div class="icon-chip"><span class="icon-chip-dot">IG</span><span class="icon-chip-label">Instagram</span></div>
+        <div class="icon-chip"><span class="icon-chip-dot">TT</span><span class="icon-chip-label">TikTok</span></div>
+        <div class="icon-chip"><span class="icon-chip-dot">Dz</span><span class="icon-chip-label">Diseño</span></div>
+        <div class="icon-chip"><span class="icon-chip-dot">Rp</span><span class="icon-chip-label">Reportes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap alt"><div class="marquee-inner">
+  <span class="marquee-item">Pymes</span><span class="marquee-item">Marcas en crecimiento</span><span class="marquee-item">Toda Latinoamérica</span><span class="marquee-item">100% remoto</span>
+  <span class="marquee-item">Pymes</span><span class="marquee-item">Marcas en crecimiento</span><span class="marquee-item">Toda Latinoamérica</span><span class="marquee-item">100% remoto</span>
 </div></div>
 
 <section class="section">
@@ -130,42 +203,6 @@
       </div>
       <span class="preview-arrow">CONTACTAR →</span>
     </a>
-  </div>
-</section>
-
-<section class="why-section">
-  <div class="why-grid">
-    <div class="why-visual reveal">
-      <img src="https://picsum.photos/seed/flow-why/700/900" alt="Equipo de Agencia Flow en una sesión de estrategia">
-      <div class="why-visual-tag">+10 años de experiencia combinada</div>
-    </div>
-    <div class="why-copy reveal">
-      <span class="section-eyebrow">Por qué Flow</span>
-      <h2 class="section-title">Estrategia primero, piezas después</h2>
-      <p class="section-note" style="margin-top:16px;">No vendemos posteos sueltos. Cada pieza responde a un objetivo medible y a un calendario que vos aprobás antes de que salga a producción.</p>
-      <div class="why-list">
-        <div>
-          <div class="why-item-head"><span class="why-item-label">Estrategia basada en datos</span><span class="why-item-pct">92%</span></div>
-          <div class="progress-track" style="--pct:92%"><div class="progress-fill"></div></div>
-        </div>
-        <div>
-          <div class="why-item-head"><span class="why-item-label">Identidad visual consistente</span><span class="why-item-pct">96%</span></div>
-          <div class="progress-track" style="--pct:96%"><div class="progress-fill"></div></div>
-        </div>
-        <div>
-          <div class="why-item-head"><span class="why-item-label">Comunicación clara y a tiempo</span><span class="why-item-pct">100%</span></div>
-          <div class="progress-track" style="--pct:100%"><div class="progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="icon-strip">
-        <div class="icon-chip"><span class="icon-chip-dot">M</span><span class="icon-chip-label">Meta Ads</span></div>
-        <div class="icon-chip"><span class="icon-chip-dot">G</span><span class="icon-chip-label">Google Ads</span></div>
-        <div class="icon-chip"><span class="icon-chip-dot">IG</span><span class="icon-chip-label">Instagram</span></div>
-        <div class="icon-chip"><span class="icon-chip-dot">TT</span><span class="icon-chip-label">TikTok</span></div>
-        <div class="icon-chip"><span class="icon-chip-dot">Dz</span><span class="icon-chip-label">Diseño</span></div>
-        <div class="icon-chip"><span class="icon-chip-dot">Rp</span><span class="icon-chip-label">Reportes</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
